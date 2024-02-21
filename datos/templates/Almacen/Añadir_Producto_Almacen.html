@@ -1,0 +1,48 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+
+<center>
+    <br>
+    <br>
+    <br>
+<h1>Agregar un nuevo producto de Almacen</h1>
+<br>
+<br>
+<br>
+<br>
+<br>
+    <div>
+        
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn">Agregar</button>
+        </form>
+    </div>
+</center>
+<style>
+    form {
+        display: flex;
+        margin: 10px; 
+        padding: 20px; 
+        border: 1px solid #ccc; 
+        background-color: #f9f9f9; 
+    }
+
+    .btn {
+        background-color: #198a1e; 
+        color: #fff; 
+        padding: 10px 20px; 
+        border: none; 
+        cursor: pointer; 
+        border-radius: 5px; 
+    }
+
+    .btn:hover {
+        background-color: #0056b3; 
+    }
+
+</style>
+
+{% endblock %}

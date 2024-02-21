@@ -1,0 +1,30 @@
+
+{% block content %}
+
+{% load static %}
+<form method="get" action="{% url 'buscar_productos' %}">
+    <input type="text" name="q" value="{{ query }}">
+    <button type="submit" class="btnB">Buscar</button>
+</form>
+
+<style>
+    input[type="text"] {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .btnB {
+      padding: 8px 12px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .btnB:hover {
+      background-color: #45a049;
+    }
+  </style>
+{% endblock %}

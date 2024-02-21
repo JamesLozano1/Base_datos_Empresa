@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <nav class="navbar">
+        <ul style="display: flex; justify-content: space-evenly;">
+            <li class="{% if request.path == '/productos_Proteccion/' %}active{% endif %}">
+                <a href="{% url 'productos_Proteccion' %}">Proteccion</a>
+            </li>
+            <li class="{% if request.path == '/productos_Almacen/' %}active{% endif %}">
+                <a href="{% url 'productos_Almacen' %}">Almacen</a>
+            </li>
+            <li class="{% if request.path == '/retiros/' %}active{% endif %}">
+                <a href="{% url 'retiros' %}">Retiros</a>
+            </li>
+        </ul>
+    </nav>    
+    <div style="padding: 2rem;">
+        {% block content %}
+        {% endblock %}
+    </div>
+    
+    <style>
+        footer {
+            background-color: #198a1e;
+            color: #ffffff;
+            text-align: center;
+            padding: 2px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .cart {
+            color: aliceblue;
+        }
+
+        .navbar {
+            background-color: #198a1e;
+            box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 20px 24px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        } 
+
+        .navbar .active {
+            background-color: rgb(94, 226, 76); /* Color para Proteccion */
+        }
+
+        .navbar .active.green {
+            background-color: lightgreen; /* Color para Almacen */
+        }
+
+        ul {
+            list-style: none;
+        }
+    </style>
+</body>
+</html>

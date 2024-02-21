@@ -1,0 +1,132 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<center>
+    <h2>Resultados de la búsqueda para "{{ query }}"</h2>
+</center>
+
+<div class="container">
+
+    <div class="resultados-seccion">
+        <h2>Productos de Protección</h2>
+        <div class="resultados-lista">
+            {% if resultados_proteccion %}
+                {% for producto in resultados_proteccion %}
+                    <div class="resultado-card">
+                        <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }} imagen" style="width: 90px;">
+                        <p><span>Producto:</span> {{ producto.nombre }}</p>
+                        <p>Cantidad: {{ producto.cantidad_disponible }}</p>
+                        <a href="{% url 'editar_producto_Proteccion' producto.id %}" class="btn3">Editar</a>
+                        <a href="{% url 'retirar_producto_proteccion' producto.id %}" class="btn">Pedir</a>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No se encontraron resultados para productos de protección.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="resultados-seccion">
+        <h2>Productos de Almacén</h2>
+        <div class="resultados-lista">
+            {% if resultados_almacen %}
+                {% for producto in resultados_almacen %}
+                    <div class="resultado-card">
+                        <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }} imagen" style="width: 90px;">
+                        <p><span>Producto:</span> {{ producto.nombre }}</p>
+                        <p>Cantidad: {{ producto.cantidad_disponible }}</p>
+                        <a href="{% url 'editar_producto_almacen' producto.id %}" class="btn">Editar</a>
+                        <a href="{% url 'retirar_producto_almacen' producto.id %}" class="btn3">Pedir</a>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No se encontraron resultados para productos de almacén.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<style>
+    .container {
+        width: 80%;
+        margin: auto;
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .resultados-seccion {
+        margin-top: 30px;
+        padding: 5rem;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+
+    }
+
+    .resultados-lista {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .resultado-card {
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin: 10px;
+        text-align: center;
+        width: 250px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    }
+
+    .resultado-card img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    span {
+        color: blueviolet;
+    }
+    .btn{
+        display: inline-block;
+        padding: 10px 20px;
+        margin-top: 20px;
+        text-align: center;
+        text-decoration: none;
+        background-color: #21a4d8; 
+        color: #fff;
+        border-radius: 5px;
+    }
+    .btn:hover{
+        background-color: #0056b3;
+    }
+    .btn2{
+        display: inline-block;
+        padding: 10px 20px;
+        margin-top: 20px;
+        text-align: center;
+        text-decoration: none;
+        background-color: #d82121; 
+        color: #fff;
+        border-radius: 5px;
+    }
+    .btn2:hover{
+        background-color: #571313;
+    }
+    .btn3{
+        display: inline-block;
+        padding: 10px 20px;
+        margin-top: 20px;
+        text-align: center;
+        text-decoration: none;
+        background-color: #198a1e; 
+        color: #fff;
+        border-radius: 5px;
+    }
+    .btn3:hover{
+        background-color: #62d446;
+    }
+</style>
+
+{% endblock %}

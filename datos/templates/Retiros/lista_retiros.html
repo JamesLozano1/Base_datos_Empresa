@@ -1,0 +1,165 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+    {% load static %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Lista de Retiros</title>
+    </head>
+    <body>
+
+    <h1>Lista de Retiros</h1>
+
+    <div>
+        <button class="button1" onclick="filterByProteccion()">Filtrar por Protección</button>
+        <button class="button2" onclick="filterByAlmacen()">Filtrar por Almacén</button>
+        <a href="{% url 'retiros' %}" class="btn">Todo</a>
+    </div>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Producto Protección</th>
+                <th>Producto Almacén</th>
+                <th>Nombre Persona</th>
+                <th>Cantidad Retirada</th>
+                <th>Fecha Retiro</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for retiro_item in retiro %}
+                <tr>
+                    <td>{{ retiro_item.id }}</td>
+                    <td class="{% if retiro_item.producto_proteccion %}proteccion{% endif %}">{{ retiro_item.producto_proteccion }}</td>
+                    <td class="{% if retiro_item.producto_almacen %}almacen{% endif %}">{{ retiro_item.producto_almacen }}</td>
+                    <td>{{ retiro_item.nombre_persona }}</td>
+                    <td>{{ retiro_item.cantidad_retirada }}</td>
+                    <td>{{ retiro_item.fecha_retiro }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        function filterByProteccion() {
+            var table = document.querySelector("table");
+            var rows = table.querySelectorAll("tr");
+
+            rows.forEach(function(row) {
+                var proteccionCell = row.querySelector(".proteccion");
+                var almacenCell = row.querySelector(".almacen");
+
+                if (proteccionCell) {
+                    row.style.display = "table-row";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        }
+
+        function filterByAlmacen() {
+            var table = document.querySelector("table");
+            var rows = table.querySelectorAll("tr");
+
+            rows.forEach(function(row) {
+                var proteccionCell = row.querySelector(".proteccion");
+                var almacenCell = row.querySelector(".almacen");
+
+                if (almacenCell) {
+                    row.style.display = "table-row";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        }
+    </script>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    h1 {
+        color: #198a1e;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #198a1e;
+        color: white;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    .proteccion {
+        background-color: #21a4d8;
+    }
+
+    .almacen {
+        background-color: #198a1e;
+        color: white;
+    }
+
+    div {
+        margin-bottom: 20px;
+    }
+
+    .button1 {
+        background-color: #21a4d8;
+        color: white;
+        padding: 8px 16px;
+        margin-right: 10px;
+        cursor: pointer;
+        border-radius: 15px;
+    }
+
+    .button1:hover {
+        background-color: #0056b3;
+    }
+    .button2 {
+        background-color: #198a1e;
+        color: white;
+        padding: 8px 16px;
+        margin-right: 10px;
+        cursor: pointer;
+        border-radius: 15px;
+
+    }
+
+    .button2:hover {
+        background-color: #155917;
+    }
+    .btn{
+        display: inline-block;
+        padding: 10px 20px;
+        margin-top: 20px;
+        text-align: center;
+        text-decoration: none;
+        background-color: #21a4d8; 
+        color: #fff;
+        border-radius: 5px;
+    }
+    .btn:hover{
+        background-color: #0056b3;
+    }
+</style>
+    </body>
+    </html>
+{% endblock %}

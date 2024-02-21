@@ -1,0 +1,117 @@
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retirar Producto de Protección</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #21a4d8;
+        }
+
+        form {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px;
+            width: 300px;
+            max-width: 100%;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #198a1e;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #155917;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            text-align: center;
+            text-decoration: none;
+            background-color: #21a4d8; 
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .btn2 {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            text-align: center;
+            text-decoration: none;
+            background-color: #d82d21; 
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .btn2:hover {
+            background-color: #86392f;
+        }
+
+        .product-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .product-info img {
+            max-width: 100%;
+            max-height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Retirar Producto de Protección</h1>
+    
+    <form method="post">
+        <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" width="120px" style="border-radius: 10px;">
+        <p>Nombre Producto: <span style="color: #0056b3;">{{ producto.nombre }}</span></p>
+        <hr>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn2" type="submit">Pedir</button>
+        <a href="{% url 'productos_Proteccion' %}" class="btn">Volver</a>
+    </form>
+</body>
+</html>
+
+{% endblock %}

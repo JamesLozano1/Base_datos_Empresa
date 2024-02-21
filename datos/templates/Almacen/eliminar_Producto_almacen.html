@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar Eliminación</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .confirmation-container {
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .confirmation-text {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .btn2 {
+            display: inline-block;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            background-color: #d82121;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .btn3 {
+            display: inline-block;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            background-color: #198a1e;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn2:hover, .btn3:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="confirmation-container">
+        <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" width="120px" style="border-radius: 10px;">
+
+        <p class="confirmation-text">¿Estás seguro de que deseas eliminar el producto "{{ producto.nombre }}"?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn2">Sí, eliminar</button>
+            <a href="{% url 'productos_Almacen' %}" class="btn3">Cancelar</a>
+        </form>
+    </div>
+</body>
+</html>
