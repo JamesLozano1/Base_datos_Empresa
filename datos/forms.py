@@ -12,6 +12,6 @@ class FormsProducto_almacen(forms.ModelForm):
         fields = '__all__'
 
 class FormsRetiroProductos(forms.ModelForm):
-    class Meta:
+    class Meta: 
         model = RetiroProducto
         fields = ['nombre_persona', 'cantidad_retirada']
