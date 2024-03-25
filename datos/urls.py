@@ -27,6 +27,7 @@ urlpatterns = [
     path('eliminar_producto/<int:producto_id>/', views.eliminar_producto, name='eliminar_producto'),
     path('eliminar_Producto_almacen/<int:producto_id>/', views.eliminar_Producto_almacen, name='eliminar_Producto_almacen'),
 
+    path('guardar/', views.ejecutar_git, name='guardar'),
 ]
     
 

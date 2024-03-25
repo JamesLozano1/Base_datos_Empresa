@@ -3,6 +3,9 @@ from .models import Producto_Proteccion, Producto_almacen,RetiroProducto
 from .forms import FormsProducto_Proteccion, FormsProducto_almacen, FormsRetiroProductos
 from collections import Counter
 from django.db.models import Q
+import subprocess
+from django.http import HttpResponse
+from datetime import datetime
 
 
 
@@ -190,3 +193,24 @@ def eliminar_Producto_almacen(request, producto_id):
         return redirect('productos_Almacen')  
 
     return render(request, 'Almacen/eliminar_Producto_almacen.html', {'producto': producto})
+
+def ejecutar_git(request):
+    try:
+        # Ejecutar git add .
+        subprocess.run(["git", "add", "."], check=True)
+
+        # Obtener la fecha y hora actual
+        now = datetime.now()
+        fecha_hora = now.strftime("%Y-%m-%d %H:%M:%S")
+
+        # Ejecutar git commit con un mensaje que incluya la fecha y hora
+        subprocess.run(["git", "commit", "-m", f"actualizacion {fecha_hora}"], check=True)
+
+        # Ejecutar git push
+        subprocess.run(["git", "push"], check=True)
+
+        # Si todo salió bien, devolver una respuesta exitosa
+        return redirect('/')
+    except subprocess.CalledProcessError as e:
+        # En caso de error, devolver un mensaje de error
+        return HttpResponse(f"Error al ejecutar comandos de git: {e}", status=500)
