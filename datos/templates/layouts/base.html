@@ -17,7 +17,7 @@
             <li class="{% if request.path == '/retiros/' %}active{% endif %}">
                 <a href="{% url 'retiros' %}">Retiros</a>
             </li>
-            <li class="{% if request.path == '/retiros/' %}active{% endif %}">
+            <li class="">
                 <form class="a" action="{% url 'guardar' %}" method="post">
                     {% csrf_token %}
                     <button type="submit">
