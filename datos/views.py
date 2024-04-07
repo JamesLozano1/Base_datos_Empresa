@@ -23,7 +23,7 @@ def inicio(request):
 
 def actualizar_repositorio(request):
     ejecutar_git_pull()
-    return redirect('')
+    return redirect('inicio')
 
 def inicio(request):
     titulo = "Pago de $ 60.000"
