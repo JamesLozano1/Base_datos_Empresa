@@ -8,6 +8,9 @@
 <body>
     <nav class="navbar">
         <ul style="display: flex; justify-content: space-evenly;">
+            <li>
+                <a href="{% url 'actualizar_repositorio' %}">🔃</a>
+            </li>
             <li class="{% if request.path == '/productos_Proteccion/' %}active{% endif %}">
                 <a href="{% url 'productos_Proteccion' %}">Proteccion</a>
             </li>

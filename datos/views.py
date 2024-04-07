@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Producto_Proteccion, Producto_almacen,RetiroProducto
+from .models import Producto_Proteccion, Producto_almacen, RetiroProducto
 from .forms import FormsProducto_Proteccion, FormsProducto_almacen, FormsRetiroProductos
 from collections import Counter
 from django.db.models import Q
@@ -7,7 +7,23 @@ import subprocess
 from django.http import HttpResponse
 from datetime import datetime
 
+def ejecutar_git_pull():
+    try:
+        subprocess.run(["git", "pull"], cwd=r'C:\Users\JAMES\Desktop\trabajo\Base_datos_Empresa', check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"Error al ejecutar git pull: {e}")
 
+def inicio(request):
+    titulo = "Pago de $ 60.000"
+
+
+    return render(request, 'index.html', {
+        'titulo':titulo,
+    })
+
+def actualizar_repositorio(request):
+    ejecutar_git_pull()
+    return redirect('')
 
 def inicio(request):
     titulo = "Pago de $ 60.000"
@@ -17,6 +33,7 @@ def inicio(request):
     })
 
 def Agregar_Producto_Proteccion(request):
+
     if request.method == 'POST':
         form = FormsProducto_Proteccion(request.POST, request.FILES)
         if form.is_valid():
@@ -45,12 +62,16 @@ def Agregar_Producto_Almacen(request):
 
 
 def productos_Almacen(request):
+    ejecutar_git_pull()
+
     productos = Producto_almacen.objects.all()
     return render(request, 'Almacen/productos_Almacen.html', {
         'productos':productos,
     })
 
 def productos_Proteccion(request):
+    ejecutar_git_pull()
+
     productos = Producto_Proteccion.objects.all()
     return render(request, 'Proteccion/productos_Proteccion.html', {
         'productos':productos,
@@ -171,6 +192,8 @@ def retirar_producto_almacen(request, producto_id):
 
 
 def retiros(request):
+    ejecutar_git_pull()
+
     retiro = RetiroProducto.objects.all()
     return render(request, 'Retiros/lista_retiros.html', {
         'retiro':retiro,

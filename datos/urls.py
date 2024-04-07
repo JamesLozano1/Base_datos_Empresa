@@ -6,6 +6,9 @@ from .views import buscar_productos
 
 urlpatterns = [
     path('', views.inicio, name='inicio'),
+
+    path('actualizar-repositorio/', views.actualizar_repositorio, name='actualizar_repositorio'),
+
     
     path('Agregar_Producto_Proteccion/', views.Agregar_Producto_Proteccion, name='Agregar_Producto_Proteccion'),
     path('Agregar_Producto_Almacen/', views.Agregar_Producto_Almacen, name='Agregar_Producto_Almacen'),
