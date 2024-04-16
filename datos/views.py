@@ -26,7 +26,7 @@ def actualizar_repositorio(request):
     return redirect('inicio')
 
 def inicio(request):
-    titulo = "Pago de $ 60.000"
+    titulo = "Pago de $ 30.000"
 
     return render(request, 'index.html', {
         'titulo':titulo,
